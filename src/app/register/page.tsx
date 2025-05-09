@@ -40,9 +40,9 @@ const Register = () => {
       <div className="w-full mx-4 md:mx-0 flex items-center justify-center">
         <div className="md:w-2/3 mx-4 w-full md:mx-auto">
           <div>
-            <Image alt="Logo" src={logo} height={200} width={200} />
+            <Image alt="Logo" src={logo} height={70} width={70} />
           </div>
-          <h1 className="text-3xl font-semibold pt-16 pb-2">Register</h1>
+          <h1 className="text-3xl font-semibold pt-12 pb-2">Register</h1>
           <p className="text-gray-500 font-medium">
             Let&apos;s create new admin
           </p>

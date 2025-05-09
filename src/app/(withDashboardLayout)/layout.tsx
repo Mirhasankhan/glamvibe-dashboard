@@ -21,10 +21,10 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             isOpen ? "col-span-5" : "hidden md:block"
           } md:col-span-1 h-full  border-r`}
         >
-          <div className="flex justify-between items-center pt-4  pb-6 mb-6 mx-8">
+          <div className="flex justify-between items-center pt-4  mx-8">
             <Link href="/" className="flex   gap-1 items-center">
               <div>
-                <Image alt="Logo" src={logo} height={150} width={150} />
+                <Image alt="Logo" src={logo} height={50} width={50} />
               </div>
             </Link>
             <button className="md:hidden bg-black text-white p-2 rounded-md">
