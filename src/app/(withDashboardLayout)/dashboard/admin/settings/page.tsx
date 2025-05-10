@@ -1,20 +1,29 @@
 "use client";
 import { useState } from "react";
-import Tabs from "./notifications/Tabs";
+
 import ChangePassword from "./notifications/ChangePassword";
-import Notification from "./notifications/Notification";
+import BannerSlider from "./notifications/Notification";
+import ScrollReveal from "./notifications/Scroll";
+import ToggleSlide from "./notifications/ToggleSlide";
+import TwoSideScrollReveal from "./notifications/SlideIn";
+import Tabs from "./notifications/Tabs";
 
 const Settings = () => {
-  const [active, setActive] = useState("password");
+  const [active, setActive] = useState("notifications");
   return (
-    <div className="grid grid-cols-5 gap-6">
-      <div className="col-span-5 md:col-span-2">
-        <Tabs active={active} setActive={setActive}></Tabs>
+    <div>
+      <div className="grid grid-cols-5 gap-6">
+        <div className="col-span-5 md:col-span-5">
+          <Tabs active={active} setActive={setActive}></Tabs>
+        </div>
+        <div className="col-span-5 md:col-span-5">
+          {active == "password" && <ChangePassword></ChangePassword>}
+          {active == "notifications" && <BannerSlider></BannerSlider>}
+        </div>
       </div>
-      <div className="col-span-5 md:col-span-3">
-        {active == "password" && <ChangePassword></ChangePassword>}
-        {active == "notifications" && <Notification></Notification>}
-      </div>
+      <ToggleSlide></ToggleSlide>
+      <ScrollReveal></ScrollReveal>
+      <TwoSideScrollReveal></TwoSideScrollReveal>
     </div>
   );
 };
