@@ -7,7 +7,7 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import Providers from "@/lib/providers/Providers";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/Previews.png";
 import SignOut from "@/components/dashboard/SignOut";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {

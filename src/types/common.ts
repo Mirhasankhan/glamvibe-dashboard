@@ -81,6 +81,13 @@ export interface TRoom {
   price: number;
   discount: number;
 }
+export interface TService {
+  id: string;
+  description: string; 
+  avgRating: number;
+  serviceName: string;  
+  price: number;
+}
 
 export interface TReview {
   userName: string;
@@ -88,6 +95,13 @@ export interface TReview {
   comment: string;
   rating: number;
   createdAt: string;
+}
+export interface TCategory {
+  categoryName: string;
+  id: string;
+  overview: string;
+  service: string[];
+  mediaUrls: string[];
 }
 export interface IFormInput {
   hotelName: string;
@@ -100,6 +114,9 @@ export interface IFormInput {
   longitude: number;
   oldPassword: string;
   newPassword: string;
+  categoryName:string;
+  description:string
+  overview:string
   confirm: string;
   email: string;
   roomSize: string;

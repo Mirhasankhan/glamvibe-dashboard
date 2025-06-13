@@ -1,17 +1,17 @@
 import { baseApi } from "../../api/baseApi";
 
-const reviewApi = baseApi.injectEndpoints({
+const servicesApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    allReviews: builder.query({
-      query: (restaurantId) => ({
-        url: `/review?id=${restaurantId}`,
+    allServices: builder.query({
+      query: () => ({
+        url: `/service/all`,
         method: "GET",
       }),
     }),
-    categories: builder.query({
+    editService: builder.mutation({
       query: () => ({
         url: `/category/all`,
-        method: "GET",
+        method: "PUT",
       }),
     }),
     createCategory: builder.mutation({
@@ -24,4 +24,8 @@ const reviewApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useAllReviewsQuery, useCategoriesQuery , useCreateCategoryMutation} = reviewApi;
+export const {
+  useAllServicesQuery,
+  useEditServiceMutation,
+  useCreateCategoryMutation,
+} = servicesApi;
