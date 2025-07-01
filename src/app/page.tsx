@@ -21,6 +21,7 @@ const AdminLogin = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm<TLoginValues>();
 
   const onSubmit: SubmitHandler<TLoginValues> = async (data) => {
@@ -37,6 +38,7 @@ const AdminLogin = () => {
       );
       Cookies.set("token", response.data.result.accessToken, { expires: 7 });
       toast.success(response.data.message);
+      reset()
       router.push(
         `/dashboard/${response.data.result.userInfo.role.toLocaleLowerCase()}`
       );

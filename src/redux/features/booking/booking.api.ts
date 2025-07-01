@@ -11,7 +11,7 @@ const bookingApi = baseApi.injectEndpoints({
     }),
     adminBookings: builder.query({
       query: () => ({
-        url: `/booking/admin`,
+        url: `/booking/admin-bookings`,
         method: "GET",
       }),
       providesTags: ["booking"],

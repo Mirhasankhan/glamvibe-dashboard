@@ -9,17 +9,20 @@ const BookingOverview = () => {
   const cancelledOrders = allbookings?.result?.bookings?.filter(
     (booking: { status: string }) => booking.status == "CANCELLED"
   );
+  const activeBookings = allbookings?.result?.bookings?.filter(
+    (booking: { status: string }) => booking.status == "ACTIVE"
+  );
   const completedOrders = allbookings?.result?.bookings?.filter(
     (booking: { status: string }) => booking.status == "COMPLETED"
   );
 
   const totalRevenue =
     completedOrders?.reduce(
-      (acc: number, curr: { totalCost: number }) => acc + curr.totalCost,
+      (acc: number, curr: { price: number }) => acc + curr.price,
       0
     ) ?? 0;
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-5">
       <div className="flex justify-between items-center bg-white p-8 rounded-md">
         <div>
           <h3 className="text-[#817F9B]">Total Bookings</h3>
@@ -28,6 +31,21 @@ const BookingOverview = () => {
           ) : (
             <p className="text-2xl font-semibold">
               {allbookings?.result?.bookings?.length}
+            </p>
+          )}
+        </div>
+        <div className="bg-green-50 rounded-md p-3">
+          <Image alt="" src={bookingLogo} height={20} width={20} />
+        </div>
+      </div>
+      <div className="flex justify-between items-center bg-white p-8 rounded-md">
+        <div>
+          <h3 className="text-[#817F9B]">Active Bookings</h3>
+          {isLoading ? (
+            <Ellipsis className="animate-ping" />
+          ) : (
+            <p className="text-2xl font-semibold">
+              {activeBookings?.length}
             </p>
           )}
         </div>

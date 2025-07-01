@@ -10,22 +10,30 @@ import {
 import { TService } from "@/types/common";
 import { Loader2 } from "lucide-react";
 import { useAllServicesQuery } from "@/redux/features/service/service.api";
+import { useState } from "react";
+import { useCategoriesQuery } from "@/redux/features/reviews/reviewApi";
 
 const AllServices = () => {
-  const { data: services, isLoading } = useAllServicesQuery("");
+  const { data: categories } = useCategoriesQuery("");
+
+  const [categoryId, setCategoryId] = useState("");
+  const { data: services, isLoading } = useAllServicesQuery(categoryId);
 
   return (
     <div>
       <div className="p-5 mt-6 bg-white">
         <div className="flex justify-between mb-6">
           <h1 className="text-2xl font-semibold pb-4">Services</h1>
-          <select className="px-4 py-2 rounded-xl border border-gray-300 bg-white text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary">
-            <option value="">Select an option</option>
-            <option value="option1">Lashes & Brows</option>
-            <option value="option2">Option Two</option>
-            <option value="option3">Option Three</option>
-            <option value="option4">Option Four</option>
-            <option value="option5">Option Five</option>
+          <select
+            onChange={(e) => setCategoryId(e.target.value)}
+            className="px-4 py-2 rounded-xl border border-gray-300 bg-white text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+          >
+            <option value="">Select a category</option>
+            {categories?.result?.map((category: any) => (
+              <option key={category.id} value={category.id}>
+                {category.categoryName}
+              </option>
+            ))}
           </select>
         </div>
         <Table className="rounded-lg min-w-[900px]">

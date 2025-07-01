@@ -3,8 +3,8 @@ import { baseApi } from "../../api/baseApi";
 const servicesApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     allServices: builder.query({
-      query: () => ({
-        url: `/service/all`,
+      query: (categoryId) => ({
+        url: `/service/all?categoryId=${categoryId}`,
         method: "GET",
       }),
     }),
