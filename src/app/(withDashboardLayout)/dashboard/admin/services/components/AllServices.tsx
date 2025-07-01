@@ -7,7 +7,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { TService } from "@/types/common";
 import { Loader2 } from "lucide-react";
 import { useAllServicesQuery } from "@/redux/features/service/service.api";
 import { useState } from "react";
@@ -18,6 +17,7 @@ const AllServices = () => {
 
   const [categoryId, setCategoryId] = useState("");
   const { data: services, isLoading } = useAllServicesQuery(categoryId);
+  console.log(services?.result);
 
   return (
     <div>
@@ -42,8 +42,7 @@ const AllServices = () => {
               <TableHead className="w-[250px] whitespace-nowrap">
                 Service Details
               </TableHead>
-              <TableHead>Category</TableHead>
-              {/* <TableHead>Room</TableHead> */}
+              <TableHead>Category</TableHead>        
               <TableHead>Price</TableHead>
               <TableHead>Overview</TableHead>
               <TableHead>Average Rating</TableHead>
@@ -66,14 +65,14 @@ const AllServices = () => {
             </TableBody>
           ) : (
             <TableBody>
-              {services?.result?.map((service: TService) => (
+              {services?.result?.map((service: any) => (
                 <TableRow key={service.id}>
                   <TableCell className="font-medium whitespace-nowrap">
                     <div className="flex items-center gap-1">
                       {service?.serviceName}
                     </div>
                   </TableCell>
-                  <TableCell>category</TableCell>
+                  <TableCell>{service?.category?.categoryName}</TableCell>
                   <TableCell>{service?.price}</TableCell>
                   <TableCell>{service?.description}</TableCell>
                   <TableCell>{service?.avgRating || "N/A"}</TableCell>

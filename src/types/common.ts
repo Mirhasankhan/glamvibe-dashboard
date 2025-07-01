@@ -104,6 +104,7 @@ export interface TCategory {
   mediaUrls: string[];
 }
 export interface IFormInput {
+  serviceName:string
   hotelName: string;
   cityId: string;
   hotelDescription: string;

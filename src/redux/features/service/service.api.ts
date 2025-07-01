@@ -2,6 +2,13 @@ import { baseApi } from "../../api/baseApi";
 
 const servicesApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    addService: builder.mutation({
+      query: (service) => ({
+        url: `/service/create`,
+        method: "POST",
+        body: service,
+      }),
+    }),
     allServices: builder.query({
       query: (categoryId) => ({
         url: `/service/all?categoryId=${categoryId}`,
@@ -25,6 +32,7 @@ const servicesApi = baseApi.injectEndpoints({
 });
 
 export const {
+  useAddServiceMutation,
   useAllServicesQuery,
   useEditServiceMutation,
   useCreateCategoryMutation,
