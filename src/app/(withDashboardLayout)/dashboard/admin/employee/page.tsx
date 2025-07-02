@@ -1,9 +1,12 @@
 import React from 'react';
+import AllEmployees from './components/AllEmployees';
+import AddEmployee from './components/AddEmployee';
 
 const EmployeePage = () => {
     return (
         <div>
-            sdfsdfsdf
+            <AddEmployee></AddEmployee>
+           <AllEmployees></AllEmployees>
         </div>
     );
 };
