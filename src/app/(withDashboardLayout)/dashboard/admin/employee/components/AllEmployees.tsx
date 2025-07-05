@@ -1,14 +1,14 @@
 "use client";
 
-import { useAllEmployeeQuery } from "@/redux/features/service/service.api";
 import { useState } from "react";
 import { useCategoriesQuery } from "@/redux/features/reviews/reviewApi";
 import Image from "next/image";
+import { useExpertsQuery } from "@/redux/features/expert/expert.api";
 
 const AllEmployees = () => {
   const [categoryId, setCategoryId] = useState("");
   const { data: categories } = useCategoriesQuery("");
-  const { data: employees } = useAllEmployeeQuery(categoryId);
+  const { data: employees } = useExpertsQuery(categoryId);
   console.log(employees?.result);
 
   return (

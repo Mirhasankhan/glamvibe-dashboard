@@ -14,13 +14,7 @@ const servicesApi = baseApi.injectEndpoints({
         url: `/service/all?categoryId=${categoryId}`,
         method: "GET",
       }),
-    }),
-    allEmployee: builder.query({
-      query: (categoryId) => ({
-        url: `/expert/all?categoryId=${categoryId}`,
-        method: "GET",
-      }),
-    }),
+    }),  
     editService: builder.mutation({
       query: () => ({
         url: `/category/all`,
@@ -38,8 +32,7 @@ const servicesApi = baseApi.injectEndpoints({
 });
 
 export const {
-  useAddServiceMutation,
-  useAllEmployeeQuery,
+  useAddServiceMutation,  
   useAllServicesQuery,
   useEditServiceMutation,
   useCreateCategoryMutation,
