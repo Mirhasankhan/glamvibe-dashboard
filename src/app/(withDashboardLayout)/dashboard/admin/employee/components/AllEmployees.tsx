@@ -14,7 +14,7 @@ const AllEmployees = () => {
   return (
     <div className="p-5 mt-6 bg-white">
       <div className="flex justify-between mb-6">
-        <h1 className="text-2xl font-semibold pb-4">Services</h1>
+        <h1 className="text-2xl font-semibold pb-4">Experts</h1>
         <select
           onChange={(e) => setCategoryId(e.target.value)}
           className="px-4 py-2 rounded-xl border border-gray-300 bg-white text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
