@@ -62,6 +62,8 @@ const AdminLogin = () => {
           <p className="text-gray-500 font-medium">
             Let&apos;s Log into your account first
           </p>
+          <h1 className="pt-2">Email: admin@gmail.com</h1>
+          <p>Password: 123456</p>
 
           <form
             onSubmit={handleSubmit(onSubmit)}
