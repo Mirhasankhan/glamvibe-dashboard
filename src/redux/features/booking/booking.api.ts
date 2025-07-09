@@ -10,8 +10,8 @@ const bookingApi = baseApi.injectEndpoints({
       providesTags: ["booking"],
     }),
     adminBookings: builder.query({
-      query: () => ({
-        url: `/booking/admin-bookings`,
+      query: (page) => ({
+        url: `/booking/admin-bookings?page=${page}`,
         method: "GET",
       }),
       providesTags: ["booking"],

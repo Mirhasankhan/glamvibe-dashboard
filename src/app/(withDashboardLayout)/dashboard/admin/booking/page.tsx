@@ -13,22 +13,20 @@ import {
   useCancelBookingMutation,
   useConfirmBookingMutation,
 } from "@/redux/features/booking/booking.api";
-import BookingOverview from "./components/BookingOverview";
 import { Loader2 } from "lucide-react";
 import { GiConfirmed } from "react-icons/gi";
-import { IoMdCheckmark } from "react-icons/io";
-import { ImCancelCircle } from "react-icons/im";
+import { useState } from "react";
+import Pagination from "@/components/dashboard/pagination";
 
 const AllBookings = () => {
-  // const [page, setPage] = useState(1);
-  const { data: allBookings, isLoading } = useAdminBookingsQuery("");
-  console.log(allBookings);
+  const [page, setPage] = useState(1);
+  const { data: allBookings, isLoading } = useAdminBookingsQuery(page);
+
   const [cancelBooking] = useCancelBookingMutation();
   const [confrimBooking] = useConfirmBookingMutation();
 
   const bookings = allBookings?.result?.bookings;
-  // const totalPage = allBookings?.result?.totalPages;
-  console.log(allBookings);
+  const totalPage = allBookings?.result?.totalPages || 1;
 
   const handleCancelBooking = async (id: string) => {
     const response = await cancelBooking(id);
@@ -41,7 +39,6 @@ const AllBookings = () => {
 
   return (
     <div>
-      <BookingOverview></BookingOverview>
       <div className="p-5 mt-6 bg-white">
         <h1 className="text-2xl font-semibold pb-4">Manage Bookings</h1>
         <Table className="rounded-lg min-w-[900px]">
@@ -83,18 +80,20 @@ const AllBookings = () => {
                     <h1 className="font-medium">{booking.phone}</h1>
                   </TableCell>
 
-                  <TableCell className="whitespace-nowrap">{booking?.service?.serviceName}</TableCell>
+                  <TableCell className="whitespace-nowrap">
+                    {booking?.service?.serviceName}
+                  </TableCell>
                   <TableCell>{booking.price}</TableCell>
                   <TableCell>
                     {new Date(booking.date).toLocaleDateString("en-GB")}
                   </TableCell>
-                  <TableCell className="whitespace-nowrap">{booking.startTime}</TableCell>
+                  <TableCell className="whitespace-nowrap">
+                    {booking.startTime}
+                  </TableCell>
                   <TableCell
                     className={`${
                       booking.status == "ACTIVE" && "text-yellow-600"
-                    } ${
-                      booking.status == "COMPLETED" && "text-green-600"
-                    } ${
+                    } ${booking.status == "COMPLETED" && "text-green-600"} ${
                       booking.status == "CANCELLED" && "text-red-600"
                     } font-medium`}
                   >
@@ -105,16 +104,18 @@ const AllBookings = () => {
                       {booking.status == "ACTIVE" ? (
                         <>
                           <div className="flex items-center gap-2">
-                            <ImCancelCircle
+                            <button
                               onClick={() => handleCancelBooking(booking.id)}
-                              size={20}
-                              className="text-red-600 cursor-pointer"
-                            />
-                            <IoMdCheckmark
+                              className="text-red-600 bg-red-50 border-red-600 border px-4 py-1 rounded-[4px] cursor-pointer"
+                            >
+                              Cancel
+                            </button>
+                            <button
                               onClick={() => handleConfirmBooking(booking.id)}
-                              className="text-green-700 cursor-pointer"
-                              size={20}
-                            />
+                              className="text-green-600 bg-green-50 border-green-600 border px-4 py-1 rounded-[4px] cursor-pointer"
+                            >
+                              Mark Completed
+                            </button>
                           </div>
                         </>
                       ) : booking.status == "CANCELLED" ? (
@@ -130,11 +131,11 @@ const AllBookings = () => {
           )}
         </Table>
       </div>
-      {/* <Pagination
+      <Pagination
         totalPage={totalPage}
         page={page}
         setPage={setPage}
-      ></Pagination> */}
+      ></Pagination>
     </div>
   );
 };
