@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useCategoriesQuery } from "@/redux/features/reviews/reviewApi";
 import Image from "next/image";
+import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa6";
 import { useExpertsQuery } from "@/redux/features/expert/expert.api";
 
 const AllEmployees = () => {
@@ -29,18 +30,36 @@ const AllEmployees = () => {
       </div>
       <div>
         {employees?.result?.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
-            {employees?.result?.map((employee: any) => (
-              <div key={employee.id}>
-                <Image
-                  src={employee.imageUrl}
-                  height={400}
-                  width={400}
-                  alt="profile"
-                ></Image>
-                <h1>{employee.name}</h1>
-                <h1>{employee.category.categoryName}</h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+            {employees?.result?.map((expert: any) => (
+              <div
+            className="bg-white rounded-[4px] p-2 shadow-lg flex flex-col items-center"
+            key={expert.id}
+          >
+            <Image
+              alt="expert"
+              className="object-cover rounded-[4px] h-[280px] w-full"
+              height={300}
+              width={500}
+              src={expert.imageUrl}
+            />
+
+            <div className="bg-white text-center py-6">
+              <h1 className="text-xl">{expert.name}</h1>
+              <p className="pt-2">{expert.category.categoryName} Expert</p>
+            </div>
+            <div className="flex gap-4 text-xl">
+              <div className="bg-white text-primary hover:bg-primary hover:text-white border border-primary p-1">
+                <FaFacebookF size={13} />
               </div>
+              <div className="bg-white text-primary hover:bg-primary hover:text-white border border-primary p-1">
+                <FaInstagram size={13} />
+              </div>
+              <div className="bg-white text-primary hover:bg-primary hover:text-white border border-primary p-1">
+                <FaTwitter size={13} />
+              </div>
+            </div>
+          </div>
             ))}
           </div>
         ) : (

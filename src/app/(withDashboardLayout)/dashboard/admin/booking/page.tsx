@@ -99,7 +99,7 @@ const AllBookings = () => {
                   >
                     {booking.status}
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="whitespace-nowrap">
                     <div>
                       {booking.status == "ACTIVE" ? (
                         <>

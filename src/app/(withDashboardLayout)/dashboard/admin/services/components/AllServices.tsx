@@ -21,7 +21,7 @@ const AllServices = () => {
 
   return (
     <div>
-      <div className="p-5 mt-6 bg-white">
+      <div className="p-5 my-6 bg-white">
         <div className="flex justify-between mb-6">
           <h1 className="text-2xl font-semibold pb-4">Services</h1>
           <select
