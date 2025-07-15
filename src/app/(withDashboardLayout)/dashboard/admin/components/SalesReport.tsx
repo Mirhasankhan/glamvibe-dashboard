@@ -56,7 +56,7 @@ const SalesReport = () => {
               content={<ChartTooltipContent indicator="dashed" />}
             />
 
-            <Bar dataKey="revenue" fill="#00A8CC" radius={4} />
+            <Bar  dataKey="revenue" fill="#00A8CC" radius={4} />
           </BarChart>
         </ChartContainer>
       </CardContent>

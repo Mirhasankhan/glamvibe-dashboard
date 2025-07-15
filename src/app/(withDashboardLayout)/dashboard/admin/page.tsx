@@ -3,6 +3,7 @@ import OrderDetails from "./components/OrderDetails";
 import Hotels from "./components/Hotels";
 import SalesReport from "./components/SalesReport";
 import TopSelling from "./components/TopSelling";
+import { ServiceChart } from "./components/ServiceChart";
 
 const OverView = () => {
   return (
@@ -14,6 +15,7 @@ const OverView = () => {
           <TopSelling></TopSelling>
         </div>
         <div className="col-span-3 md:col-span-1">
+          <ServiceChart></ServiceChart>
           <Hotels></Hotels>
         </div>
       </div>
