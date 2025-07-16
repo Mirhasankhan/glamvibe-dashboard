@@ -21,11 +21,10 @@ import {
 export const description = "A simple pie chart"
 
 const chartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
+  { browser: "chrome", visitors: 75, fill: "var(--color-chrome)" },
   { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
   { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
   { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 90, fill: "var(--color-other)" },
 ]
 
 const chartConfig = {
@@ -47,11 +46,7 @@ const chartConfig = {
   edge: {
     label: "Edge",
     color: "var(--chart-4)",
-  },
-  other: {
-    label: "Other",
-    color: "var(--chart-5)",
-  },
+  }, 
 } satisfies ChartConfig
 
 export function ServiceChart() {
@@ -64,7 +59,7 @@ export function ServiceChart() {
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square max-h-[250px]"
+          className="mx-auto aspect-square max-h-[280px]"
         >
           <PieChart>
             <ChartTooltip

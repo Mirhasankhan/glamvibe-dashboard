@@ -9,20 +9,8 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-const chartData = [
-  { month: "January", revenue: 80 },
-  { month: "February", revenue: 200 },
-  { month: "March", revenue: 120 },
-  { month: "April", revenue: 190 },
-  { month: "May", revenue: 130 },
-  { month: "June", revenue: 140 },
-  { month: "July", revenue: 80 },
-  { month: "August", revenue: 200 },
-  { month: "September", revenue: 120 },
-  { month: "October", revenue: 190 },
-  { month: "November", revenue: 130 },
-  { month: "December", revenue: 140 },
-];
+import { useMonthlyEarningQuery } from "@/redux/features/booking/booking.api";
+
 
 const chartConfig = {
   revenue: {
@@ -32,17 +20,19 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 const SalesReport = () => {
+  const {data:earningData} = useMonthlyEarningQuery("")
+  console.log(earningData?.result);
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex justify-between">
-          <h1>Sales Report</h1>
+        <CardTitle className="flex pb-6 justify-between">
+          <h1>Earnings Report</h1>
           <h1>Revenue</h1>
         </CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
+          <BarChart accessibilityLayer data={earningData?.result}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="month"
@@ -56,7 +46,7 @@ const SalesReport = () => {
               content={<ChartTooltipContent indicator="dashed" />}
             />
 
-            <Bar  dataKey="revenue" fill="#00A8CC" radius={4} />
+            <Bar barSize={30} dataKey="revenue" fill="#00A8CC" radius={16} />
           </BarChart>
         </ChartContainer>
       </CardContent>

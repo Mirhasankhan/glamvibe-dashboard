@@ -23,6 +23,13 @@ const bookingApi = baseApi.injectEndpoints({
       }),
       providesTags: ["booking"],
     }),    
+    monthlyEarning: builder.query({
+      query: () => ({
+        url: `/booking/earning/monthly`,
+        method: "GET",
+      }),
+      providesTags: ["booking"],
+    }),    
     cancelBooking: builder.mutation({
       query: (bookingId) => ({
         url: `booking/cancel/${bookingId}`,
@@ -40,5 +47,5 @@ const bookingApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useBookingsQuery, useOverviewQuery, useCancelBookingMutation, useAdminBookingsQuery,useConfirmBookingMutation} =
+export const { useBookingsQuery, useMonthlyEarningQuery, useOverviewQuery, useCancelBookingMutation, useAdminBookingsQuery,useConfirmBookingMutation} =
   bookingApi;
