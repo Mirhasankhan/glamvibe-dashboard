@@ -1,7 +1,5 @@
 "use client";
-
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ChartConfig,
@@ -10,7 +8,6 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { useMonthlyEarningQuery } from "@/redux/features/booking/booking.api";
-
 
 const chartConfig = {
   revenue: {

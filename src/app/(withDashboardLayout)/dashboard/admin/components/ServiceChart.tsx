@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { TrendingUp } from "lucide-react"
-import { Pie, PieChart } from "recharts"
+import { TrendingUp } from "lucide-react";
+import { Pie, PieChart } from "recharts";
 
 import {
   Card,
@@ -10,50 +10,51 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import {
-  ChartConfig,
+} from "@/components/ui/card";
+import {  
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
+} from "@/components/ui/chart";
+import { useServiceBookingsQuery } from "@/redux/features/booking/booking.api";
 
-export const description = "A simple pie chart"
+export const description = "A simple pie chart";
 
-const chartData = [
-  { browser: "chrome", visitors: 75, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-]
-
-const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
-  chrome: {
-    label: "Chrome",
-    color: "var(--chart-1)",
-  },
-  safari: {
-    label: "Safari",
-    color: "var(--chart-2)",
-  },
-  firefox: {
-    label: "Firefox",
-    color: "var(--chart-3)",
-  },
-  edge: {
-    label: "Edge",
-    color: "var(--chart-4)",
-  }, 
-} satisfies ChartConfig
+const COLORS = [
+  "var(--chart-1)",
+  "var(--chart-2)",
+  "var(--chart-3)",
+  "var(--chart-4)",
+  "var(--chart-5)",
+  "var(--chart-6)",
+  "var(--chart-7)",
+];
 
 export function ServiceChart() {
+  const { data } = useServiceBookingsQuery("");
+
+  const chartData =
+    data?.result?.map((item: any, index: any) => ({
+      serviceName: item.serviceName,
+      visitors: item.totalBookings,
+      fill: COLORS[index % COLORS.length],
+    })) || [];
+
+  const chartConfig = chartData.reduce(
+    (acc: any, item: any, index: any) => {
+      acc[item.serviceName] = {
+        label: item.serviceName,
+        color: COLORS[index % COLORS.length],
+      };
+      return acc;
+    },
+    { visitors: { label: "Bookings" } } as Record<string, any>
+  );
+
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Pie Chart</CardTitle>
+        <CardTitle>Service Bookings Chart</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
@@ -66,7 +67,15 @@ export function ServiceChart() {
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Pie data={chartData} dataKey="visitors" nameKey="browser" />
+            <Pie
+              data={chartData}
+              dataKey="visitors"
+              nameKey="serviceName"
+              cx="50%"
+              cy="50%"
+              outerRadius="100%"
+              label
+            />
           </PieChart>
         </ChartContainer>
       </CardContent>
@@ -75,9 +84,9 @@ export function ServiceChart() {
           Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
         </div>
         <div className="text-muted-foreground leading-none">
-          Showing total visitors for the last 6 months
+          Showing total bookings for the last 6 months
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }
